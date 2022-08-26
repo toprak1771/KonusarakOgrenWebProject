@@ -3,6 +3,7 @@ using KonusarakOgrenWebProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
 
 namespace KonusarakOgrenWebProject.Controllers
 {
@@ -70,6 +71,21 @@ namespace KonusarakOgrenWebProject.Controllers
                 }
                 else
                 {
+                    var user = await _userManager.FindByNameAsync(signInViewModel.UserName);
+                    if(user==null)
+                    {
+                        ViewBag.Message = String.Format("Yanlış Kullanıcı adı");                      
+                        //ModelState.AddModelError(string.Empty, "Yanlış kullanıcı adı");
+                        return View();
+                    }
+                    else if(!await _userManager.CheckPasswordAsync(user,signInViewModel.Password))
+                    {
+                        ViewBag.Message = String.Format("Yanlış parola");                       
+                        //ModelState.AddModelError(string.Empty, "Yanlış parola");
+                        return View();
+
+                    }
+
                     return RedirectToAction("SignIn", "Login");
                 }
             }

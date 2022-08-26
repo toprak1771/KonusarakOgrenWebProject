@@ -1,7 +1,34 @@
-﻿
+﻿@model List<Product>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
+<section class="grids-1 py-5">
+    <div class="grids py-lg-5 py-md-4">
+        <div class="container">
+            <h3 class="hny-title mb-5">Ürün Listesi</h3>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-4 col-6">
+                        <div class="column">
+                            <a href=""><img src="@item.Image" alt="" class="img-fluid"></a>
+                            <div class="info">
+                                <h4><a href="">@item.Brand</a></h4>
+                                <p>@item.Name</p>                              
+                                <div class="dst-btm">
+                                    <span>@item.Price $</span>
+                                    <span>@item.Color</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
 

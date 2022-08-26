@@ -4,53 +4,137 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DataAccessLayer.Concrete
 {
     public class DataGenerator
     {
+        
+
         public DataGenerator()
         {
             
         }
-        public void InitializeData()
+        public async void InitializeData()
         {
-            //EfAppUserDal EfProduct = new EfAppUserDal();
-            //var appUser = new AppUser
-            //{
-            //    Name = "orçun",
-            //    Surname = "Or",
-            //    Gender = "E",
-            //    UserName="orcnor",
-            //    Password = "123456aA*",
-               
-            //};
-            //PasswordHasher<AppUser> test = new PasswordHasher<AppUser>();
-            //test.HashPassword(appUser, appUser.Password);
-            //appUser.PasswordHash = test.HashPassword(appUser, appUser.Password);
-
-            //EfProduct.Insert(appUser);
-
-            EfProductDal efProductDal = new EfProductDal();
-            var product = new Product()
+           
+            Context c = new Context();
+            if (c.Products.Count() == 0) 
             {
-                Brand = "Nike",
-                Color = "Yellow",
-                Name = "tshirt",
-                Image="123.jpeg",
-                Size="s",
-                PublishDate=DateTime.Now,
-                Price=25,
-                OnSale=true,
-                Comments=new List<Comment>(),
-                StockAmount=150,
-                Type="tshirt"
+                //EfProductDal efProductDal = new EfProductDal();
+                c.Products.AddRange
+                (
+                    new Product()
+                    {
+                        Brand = "Nike",
+                        Color = "Yellow",
+                        Name = "tshirt",
+                        Image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/dce293e5-71cb-4c2e-b67f-f68ea0602705/sportswear-standard-issue-ti%C5%9F%C3%B6rt%C3%BC-N234RW.png",
+                        Size = "s",
+                        PublishDate = DateTime.Now,
+                        Price = 25,
+                        OnSale = true,
+                        Comments = new List<Comment>(),
+                        StockAmount = 150,
+                        Type = "tshirt"
 
-            };
-            efProductDal.Insert(product);
+                    },
+                    new Product()
+                    {
+                        Brand = "Nike",
+                        Color = "Yellow",
+                        Name = "tshirt",
+                        Image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/dce293e5-71cb-4c2e-b67f-f68ea0602705/sportswear-standard-issue-ti%C5%9F%C3%B6rt%C3%BC-N234RW.png",
+                        Size = "s",
+                        PublishDate = DateTime.Now,
+                        Price = 25,
+                        OnSale = true,
+                        Comments = new List<Comment>(),
+                        StockAmount = 150,
+                        Type = "tshirt"
+
+                    },
+                    new Product()
+                    {
+                        Brand = "Nike",
+                        Color = "Yellow",
+                        Name = "tshirt",
+                        Image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/dce293e5-71cb-4c2e-b67f-f68ea0602705/sportswear-standard-issue-ti%C5%9F%C3%B6rt%C3%BC-N234RW.png",
+                        Size = "s",
+                        PublishDate = DateTime.Now,
+                        Price = 25,
+                        OnSale = true,
+                        Comments = new List<Comment>(),
+                        StockAmount = 150,
+                        Type = "tshirt"
+
+                    }             
+                
+                );
+                
+
+                //var product = new Product()
+                //{
+                //    Brand = "Nike",
+                //    Color = "Yellow",
+                //    Name = "tshirt",
+                //    Image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/dce293e5-71cb-4c2e-b67f-f68ea0602705/sportswear-standard-issue-ti%C5%9F%C3%B6rt%C3%BC-N234RW.png",
+                //    Size = "s",
+                //    PublishDate = DateTime.Now,
+                //    Price = 25,
+                //    OnSale = true,
+                //    Comments = new List<Comment>(),
+                //    StockAmount = 150,
+                //    Type = "tshirt"
+
+                //};
+                //var product2 = new Product()
+                //{
+                //    Brand = "Nike",
+                //    Color = "Yellow",
+                //    Name = "tshirt",
+                //    Image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/dce293e5-71cb-4c2e-b67f-f68ea0602705/sportswear-standard-issue-ti%C5%9F%C3%B6rt%C3%BC-N234RW.png",
+                //    Size = "s",
+                //    PublishDate = DateTime.Now,
+                //    Price = 25,
+                //    OnSale = true,
+                //    Comments = new List<Comment>(),
+                //    StockAmount = 150,
+                //    Type = "tshirt"
+
+                //};
+                //var product3 = new Product()
+                //{
+                //    Brand = "Nike",
+                //    Color = "Yellow",
+                //    Name = "tshirt",
+                //    Image = "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/dce293e5-71cb-4c2e-b67f-f68ea0602705/sportswear-standard-issue-ti%C5%9F%C3%B6rt%C3%BC-N234RW.png",
+                //    Size = "s",
+                //    PublishDate = DateTime.Now,
+                //    Price = 25,
+                //    OnSale = true,
+                //    Comments = new List<Comment>(),
+                //    StockAmount = 150,
+                //    Type = "tshirt"
+
+                //};               
+                //efProductDal.Insert(product);
+                //efProductDal.Insert(product2);
+                //efProductDal.Insert(product3);
+            }
+            await c.SaveChangesAsync();
+
+            
+
         }
     }
 }

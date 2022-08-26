@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddEntityFrameworkStores<Context>();
 
+
 var dataGenerator = new DataGenerator();
 dataGenerator.InitializeData();
 
