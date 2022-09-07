@@ -11,7 +11,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddEntityFrameworkStores<Context>();
-
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    opt.AccessDeniedPath = new PathString("/Login/AccessDenied");
+});
 
 var dataGenerator = new DataGenerator();
 dataGenerator.InitializeData();
